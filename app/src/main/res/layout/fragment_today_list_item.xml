@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/today_list_item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:contentDescription="weather"
+        android:src="@drawable/sun"
+        android:layout_below="@+id/today_list_item_date"
+        android:layout_alignStart="@+id/today_list_item_date" />
+
+    <TextView
+        android:id="@+id/today_list_item_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/today_list_item_image"
+        android:layout_centerHorizontal="true"
+        android:text="25"
+        android:textSize="50dp" />
+
+    <TextView
+        android:id="@+id/today_list_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/today_list_item_temperature"
+        android:text="21.09.1009"
+        android:textSize="25dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/today_list_item_temperature"
+        android:layout_marginBottom="12dp"
+        android:layout_toEndOf="@+id/today_list_item_temperature"
+        app:srcCompat="@drawable/celsius" />
+</RelativeLayout>
