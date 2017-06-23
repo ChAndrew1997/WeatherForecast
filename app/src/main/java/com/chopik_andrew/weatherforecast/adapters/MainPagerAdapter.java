@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.chopik_andrew.weatherforecast.fragments.DescriptionFragment;
 import com.chopik_andrew.weatherforecast.fragments.MainListFragment;
-import com.chopik_andrew.weatherforecast.fragments.TodayFragment;
 
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
@@ -28,7 +28,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case NOW_POSITION:
-                return MainListFragment.newInstance(MainListFragment.TODAY_WEATHER_VIEW_TYPE);
+                return DescriptionFragment.newInstance(NOW_POSITION);
 
             case YESTERDAY_POSITION:
 
