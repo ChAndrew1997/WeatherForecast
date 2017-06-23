@@ -4,6 +4,7 @@ package com.chopik_andrew.weatherforecast.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,46 +44,11 @@ public class TodayFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(App.getInstance());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        CurrentLocationManager.getInstance().findMyLocation(locationListener);
-
         return view;
     }
 
-    CurrentLocationManager.FindLocationListener locationListener = new CurrentLocationManager.FindLocationListener() {
-        @Override
-        public void start() {
 
-        }
 
-        @Override
-        public void success() {
-            WeatherApiManager.getInstance().getWeather(CurrentLocationManager.getInstance().getLatitude(),
-                    CurrentLocationManager.getInstance().getLongitude(), weatherListener);
-        }
 
-        @Override
-        public void failure() {
-
-        }
-    };
-
-    WeatherApiManager.LoadWeatherListener weatherListener = new WeatherApiManager.LoadWeatherListener() {
-        @Override
-        public void start() {
-
-        }
-
-        @Override
-        public void success() {
-            mRecyclerViewAdapter = new TodayRecyclerViewAdapter(WeatherListModel.getWeatherList(2));
-            mRecyclerView.setAdapter(mRecyclerViewAdapter);
-            mRecyclerViewAdapter.notifyDataSetChanged();
-        }
-
-        @Override
-        public void failure() {
-
-        }
-    };
 
 }

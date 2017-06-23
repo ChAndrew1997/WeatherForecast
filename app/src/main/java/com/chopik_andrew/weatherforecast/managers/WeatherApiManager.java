@@ -21,6 +21,9 @@ public class WeatherApiManager {
 
     public static final String BASE_URL = "http://api.openweathermap.org/";
     private static final String API_KEY = "a84d20ba16e63145fec0b712d6547707";
+    public static final String WEATHER_TYPE_RAIN = "Rain";
+    public static final String WEATHER_TYPE_CLEAR = "Clear";
+    public static final String WEATHER_TYPE_CLOUDS = "Clouds";
 
     private static WeatherApiManager mInstance;
     private FiveDaysWeatherApi mFiveDaysWeatherAPI;

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.chopik_andrew.weatherforecast.R;
 import com.chopik_andrew.weatherforecast.WeatherListModel;
+import com.chopik_andrew.weatherforecast.managers.WeatherApiManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,18 +57,20 @@ public class TodayRecyclerViewAdapter extends RecyclerView.Adapter<TodayRecycler
     public void onBindViewHolder(TodayRecyclerViewAdapter.ViewHolder holder, int position) {
         mDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
-        holder.mDateTextView.setText(mDateFormat.format(new Date(mList.get(position).getDate() * 1000L)));
-        holder.mTemperatureTextView.setText(Integer.toString((int) mList.get(position).getTemperature() - 273));
-        String description = mList.get(position).getDescription();
+        final WeatherListModel model = mList.get(position);
+
+        holder.mDateTextView.setText(mDateFormat.format(new Date(model.getDate() * 1000L)));
+        holder.mTemperatureTextView.setText(Integer.toString((int) model.getTemperature() - 273));
+        String description = model.getDescription();
 
         switch (description){
-            case "Rain":
+            case WeatherApiManager.WEATHER_TYPE_RAIN:
                 holder.mImageView.setImageResource(R.drawable.rain);
                 break;
-            case "Clouds":
+            case WeatherApiManager.WEATHER_TYPE_CLOUDS:
                 holder.mImageView.setImageResource(R.drawable.cloudy);
                 break;
-            case "Clear":
+            case WeatherApiManager.WEATHER_TYPE_CLEAR:
                 holder.mImageView.setImageResource(R.drawable.sun);
                 break;
         }

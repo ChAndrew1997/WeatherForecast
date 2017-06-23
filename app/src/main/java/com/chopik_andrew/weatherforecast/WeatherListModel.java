@@ -10,14 +10,15 @@ import java.util.ArrayList;
 
 public class WeatherListModel {
 
+    public static final int FIVE_DAYS_WEATHER_MODEL = 5;
+    public static final int SIXTEEN_DAYS_WEATHER_MODEL = 16;
+
     private String mCity;
     private int mDate;
     private double mTemperature;
     private String mDescription;
     private int mClouds;
     private int mCount;
-
-    private static ArrayList<WeatherListModel> mList;
 
     public WeatherListModel(String city, int date, double temperature, String description,
                             int clouds, int count){
@@ -34,20 +35,38 @@ public class WeatherListModel {
             return null;
         }
 
-        mList = new ArrayList<WeatherListModel>();
+        ArrayList<WeatherListModel> list = new ArrayList<>();
 
-        for(int i = 0; i < count; i++){
+        for(int i = 0; i < count ; i++){
 
+        WeatherApiManager weatherApiManager = WeatherApiManager.getInstance();
 
-            mList.add(new WeatherListModel(WeatherApiManager.getInstance().getCity(),
-                    WeatherApiManager.getInstance().getDate().get(WeatherApiManager.getInstance().getCount() + i),
-                    WeatherApiManager.getInstance().getTemperature().get(WeatherApiManager.getInstance().getCount() + i),
-                    WeatherApiManager.getInstance().getDescription().get(WeatherApiManager.getInstance().getCount() + i),
-                    WeatherApiManager.getInstance().getClouds().get(WeatherApiManager.getInstance().getCount() + i),
-                    WeatherApiManager.getInstance().getCount()));
+            list.add(new WeatherListModel(weatherApiManager.getCity(),
+                    weatherApiManager.getDate().get(weatherApiManager.getCount() + i),
+                    weatherApiManager.getTemperature().get(weatherApiManager.getCount() + i),
+                    weatherApiManager.getDescription().get(weatherApiManager.getCount() + i),
+                    weatherApiManager.getClouds().get(weatherApiManager.getCount() + i),
+                    weatherApiManager.getCount()));
         }
 
-        return mList;
+        return list;
+    }
+
+    public static ArrayList<WeatherListModel> getDetailedFiveDaysModel(){
+        ArrayList<WeatherListModel> detailList = new ArrayList<>();
+
+        WeatherApiManager weatherApiManager = WeatherApiManager.getInstance();
+
+        for (int i = 0; i < weatherApiManager.getCount(); i++){
+            detailList.add(new WeatherListModel(weatherApiManager.getCity(),
+                    weatherApiManager.getDate().get(i),
+                    weatherApiManager.getTemperature().get(i),
+                    weatherApiManager.getDescription().get(i),
+                    weatherApiManager.getClouds().get(i),
+                    weatherApiManager.getCount()));
+        }
+
+        return detailList;
     }
 
     public String getCity() {

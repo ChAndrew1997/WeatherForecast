@@ -10,18 +10,37 @@ import com.chopik_andrew.weatherforecast.fragments.TodayFragment;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
-    static final int PAGE_COUNT = 3;
+    private static final int PAGE_COUNT = 3;
+
+    public static final int NOW_POSITION = 0;
+    public static final int YESTERDAY_POSITION = 1;
+    public static final int OTHER_POSITION = 2;
+
+    private FragmentManager mFragmentManager;
+
 
     public MainPagerAdapter(FragmentManager fm) {
         super(fm);
+        mFragmentManager = fm;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0)
-            return new TodayFragment();
-        else
-            return MainListFragment.newInstance(position);
+        switch (position) {
+            case NOW_POSITION:
+                return MainListFragment.newInstance(MainListFragment.TODAY_WEATHER_VIEW_TYPE);
+
+            case YESTERDAY_POSITION:
+
+                return MainListFragment.newInstance(MainListFragment.FIVE_WEATHER_VIEW_TYPE);
+
+            case OTHER_POSITION:
+
+                return MainListFragment.newInstance(MainListFragment.SIXTEEN_WEATHER_VIEW_TYPE);
+
+            default:
+                throw new IllegalArgumentException("Bad Fragment type exception");
+        }
     }
 
     @Override
@@ -29,4 +48,20 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         return PAGE_COUNT;
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case NOW_POSITION:
+                return "Today";
+
+            case YESTERDAY_POSITION:
+                return "5 Days";
+
+            case OTHER_POSITION:
+                return "16 Days";
+
+            default:
+                return super.getPageTitle(position);
+        }
+    }
 }

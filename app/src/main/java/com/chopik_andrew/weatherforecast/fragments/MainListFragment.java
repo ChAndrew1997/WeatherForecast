@@ -20,14 +20,19 @@ public class MainListFragment extends Fragment {
 
     static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
 
+    public static final int TODAY_WEATHER_VIEW_TYPE = 1;
+    public static final int FIVE_WEATHER_VIEW_TYPE = 2;
+    public static final int SIXTEEN_WEATHER_VIEW_TYPE = 3;
+
     private int mPageNumber;
     private RecyclerView mRecyclerView;
     private MainRecyclerViewAdapter mRecyclerViewAdapter;
+    private int mCurrentType = TODAY_WEATHER_VIEW_TYPE;
 
-    public static MainListFragment newInstance(int page) {
+    public static MainListFragment newInstance(int type) {
         MainListFragment listFragment = new MainListFragment();
         Bundle arguments = new Bundle();
-        arguments.putInt(ARGUMENT_PAGE_NUMBER, page);
+        arguments.putInt(ARGUMENT_PAGE_NUMBER, type);
         listFragment.setArguments(arguments);
         return listFragment;
     }
@@ -45,50 +50,26 @@ public class MainListFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(App.getInstance()));
 
-        CurrentLocationManager.getInstance().findMyLocation(locationListener);
+
+        switch (mPageNumber){
+            case TODAY_WEATHER_VIEW_TYPE:
+                mRecyclerViewAdapter = new MainRecyclerViewAdapter(getActivity(),
+                        WeatherListModel.getWeatherList(2), mRecyclerView);
+                break;
+            case FIVE_WEATHER_VIEW_TYPE:
+                mRecyclerViewAdapter = new MainRecyclerViewAdapter(getActivity(),
+                        WeatherListModel.getWeatherList(WeatherListModel.FIVE_DAYS_WEATHER_MODEL), mRecyclerView);
+                break;
+            case SIXTEEN_WEATHER_VIEW_TYPE:
+                mRecyclerViewAdapter = new MainRecyclerViewAdapter(getActivity(),
+                        WeatherListModel.getWeatherList(WeatherListModel.SIXTEEN_DAYS_WEATHER_MODEL), mRecyclerView);
+                break;
+
+        }
+
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
         return view;
     }
-
-    CurrentLocationManager.FindLocationListener locationListener = new CurrentLocationManager.FindLocationListener() {
-        @Override
-        public void start() {
-
-        }
-
-        @Override
-        public void success() {
-            WeatherApiManager.getInstance().getWeather(CurrentLocationManager.getInstance().getLatitude(),
-                    CurrentLocationManager.getInstance().getLongitude(), weatherListener);
-        }
-
-        @Override
-        public void failure() {
-
-        }
-    };
-
-    WeatherApiManager.LoadWeatherListener weatherListener = new WeatherApiManager.LoadWeatherListener() {
-        @Override
-        public void start() {
-
-        }
-
-        @Override
-        public void success() {
-            if(mPageNumber == 1){
-                mRecyclerViewAdapter = new MainRecyclerViewAdapter(WeatherListModel.getWeatherList(5));
-            } else{
-                mRecyclerViewAdapter = new MainRecyclerViewAdapter(WeatherListModel.getWeatherList(16));
-            }
-            mRecyclerView.setAdapter(mRecyclerViewAdapter);
-            mRecyclerViewAdapter.notifyDataSetChanged();
-        }
-
-        @Override
-        public void failure() {
-
-        }
-    };
 
 }
