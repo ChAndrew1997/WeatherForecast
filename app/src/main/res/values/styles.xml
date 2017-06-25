@@ -8,4 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyCustomTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:statusBarColor">@color/SomeCustomColor</item>
+        <item name="colorPrimary">@color/SomeCustomColor</item>
+        <item name="colorPrimaryDark">@color/SomeCustomColor</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/BackgroundCustom</item>
+        <item name="android:navigationBarColor">@color/SomeCustomColor</item>
+        <item name="android:textColorSecondary">@color/SomeCustomColor</item>
+    </style>
+
+
 </resources>

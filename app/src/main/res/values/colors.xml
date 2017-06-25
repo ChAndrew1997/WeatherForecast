@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#e4fa7ab0</color>
+    <color name="BackgroundCustom">#ffffff</color>
+    <color name="NavigationCustom">#1c75ac</color>
+    <color name="SomeCustomColor">#74b8fb</color>
+    <color name="SomeCustomColor2">#f1db38</color>
 </resources>
