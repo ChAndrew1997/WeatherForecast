@@ -16,7 +16,7 @@ import com.chopik_andrew.weatherforecast.adapters.MainPagerAdapter;
 import com.chopik_andrew.weatherforecast.managers.CurrentLocationManager;
 import com.chopik_andrew.weatherforecast.managers.WeatherApiManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private ViewPager mViewPager;
     private MainPagerAdapter mPagerAdapter;
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             mProgressBar.setVisibility(ProgressBar.INVISIBLE);
             mViewPager.setAdapter(mPagerAdapter);
             mTabLayout.setupWithViewPager(mViewPager);
+            mToolBar.setTitle(WeatherApiManager.getInstance().getCity());
             stopProgress();
         }
 
@@ -101,4 +102,5 @@ public class MainActivity extends AppCompatActivity {
     private void stopProgress() {
         mSwitcher.setDisplayedChild(1);
     }
+
 }

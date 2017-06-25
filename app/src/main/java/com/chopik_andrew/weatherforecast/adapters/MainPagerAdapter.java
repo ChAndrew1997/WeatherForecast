@@ -28,7 +28,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case NOW_POSITION:
-                return DescriptionFragment.newInstance(NOW_POSITION);
+                return DescriptionFragment.newInstance(NOW_POSITION, MainListFragment.TODAY_WEATHER_VIEW_TYPE);
 
             case YESTERDAY_POSITION:
 

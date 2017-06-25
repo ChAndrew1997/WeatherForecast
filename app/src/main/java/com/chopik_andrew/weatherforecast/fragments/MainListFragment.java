@@ -27,7 +27,6 @@ public class MainListFragment extends Fragment {
     private int mPageNumber;
     private RecyclerView mRecyclerView;
     private MainRecyclerViewAdapter mRecyclerViewAdapter;
-    private int mCurrentType = TODAY_WEATHER_VIEW_TYPE;
 
     public static MainListFragment newInstance(int type) {
         MainListFragment listFragment = new MainListFragment();
@@ -49,20 +48,16 @@ public class MainListFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(App.getInstance()));
-
+        mRecyclerView.hasFixedSize();
 
         switch (mPageNumber){
-            case TODAY_WEATHER_VIEW_TYPE:
-                mRecyclerViewAdapter = new MainRecyclerViewAdapter(getActivity(),
-                        WeatherListModel.getWeatherList(2), mRecyclerView);
-                break;
             case FIVE_WEATHER_VIEW_TYPE:
                 mRecyclerViewAdapter = new MainRecyclerViewAdapter(getActivity(),
-                        WeatherListModel.getWeatherList(WeatherListModel.FIVE_DAYS_WEATHER_MODEL), mRecyclerView);
+                        WeatherListModel.getWeatherList(WeatherListModel.FIVE_DAYS_WEATHER_MODEL), mPageNumber);
                 break;
             case SIXTEEN_WEATHER_VIEW_TYPE:
                 mRecyclerViewAdapter = new MainRecyclerViewAdapter(getActivity(),
-                        WeatherListModel.getWeatherList(WeatherListModel.SIXTEEN_DAYS_WEATHER_MODEL), mRecyclerView);
+                        WeatherListModel.getWeatherList(WeatherListModel.SIXTEEN_DAYS_WEATHER_MODEL), mPageNumber);
                 break;
 
         }

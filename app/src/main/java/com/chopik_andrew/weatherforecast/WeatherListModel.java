@@ -16,18 +16,32 @@ public class WeatherListModel {
     private String mCity;
     private int mDate;
     private double mTemperature;
+    private double mTemperatureNight;
     private String mDescription;
     private int mClouds;
     private int mCount;
+    private double mPressure;
+    private double mSpeed;
+    private int mHumidity;
 
-    public WeatherListModel(String city, int date, double temperature, String description,
-                            int clouds, int count){
-        mCity = city;
+    private WeatherListModel(int date, double temperature, String description){
         mDate = date;
         mTemperature = temperature;
         mDescription = description;
+    }
+
+    private WeatherListModel(String city, int date, double temperature, double nightTemperature, String description,
+                            int clouds, double pressure, double speed, int humidity, int count){
+        mCity = city;
+        mDate = date;
+        mTemperature = temperature;
+        mTemperatureNight = nightTemperature;
+        mDescription = description;
         mClouds = clouds;
         mCount = count;
+        mSpeed = speed;
+        mHumidity = humidity;
+        mPressure = pressure;
     }
 
     public static ArrayList<WeatherListModel> getWeatherList(int count){
@@ -44,8 +58,12 @@ public class WeatherListModel {
             list.add(new WeatherListModel(weatherApiManager.getCity(),
                     weatherApiManager.getDate().get(weatherApiManager.getCount() + i),
                     weatherApiManager.getTemperature().get(weatherApiManager.getCount() + i),
+                    weatherApiManager.getTemperatureNight().get(i),
                     weatherApiManager.getDescription().get(weatherApiManager.getCount() + i),
                     weatherApiManager.getClouds().get(weatherApiManager.getCount() + i),
+                    weatherApiManager.getPressure().get(i),
+                    weatherApiManager.getSpeed().get(i),
+                    weatherApiManager.getHumidity().get(i),
                     weatherApiManager.getCount()));
         }
 
@@ -58,12 +76,9 @@ public class WeatherListModel {
         WeatherApiManager weatherApiManager = WeatherApiManager.getInstance();
 
         for (int i = 0; i < weatherApiManager.getCount(); i++){
-            detailList.add(new WeatherListModel(weatherApiManager.getCity(),
-                    weatherApiManager.getDate().get(i),
+            detailList.add(new WeatherListModel(weatherApiManager.getDate().get(i),
                     weatherApiManager.getTemperature().get(i),
-                    weatherApiManager.getDescription().get(i),
-                    weatherApiManager.getClouds().get(i),
-                    weatherApiManager.getCount()));
+                    weatherApiManager.getDescription().get(i)));
         }
 
         return detailList;
@@ -91,5 +106,21 @@ public class WeatherListModel {
 
     public int getCount() {
         return mCount;
+    }
+
+    public double getTemperatureNight() {
+        return mTemperatureNight;
+    }
+
+    public double getPressure() {
+        return mPressure;
+    }
+
+    public double getSpeed() {
+        return mSpeed;
+    }
+
+    public int getHumidity() {
+        return mHumidity;
     }
 }

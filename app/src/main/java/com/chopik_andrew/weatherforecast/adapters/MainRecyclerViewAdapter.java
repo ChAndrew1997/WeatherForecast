@@ -30,13 +30,14 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     private ArrayList<WeatherListModel> mList;
     private SimpleDateFormat mDateFormat;
-    private RecyclerView mRecyclerView;
+    private int mPageNumber;
     private Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mDateTextView;
         public TextView mTemperatureTextView;
         public ImageView mImageView;
+        public TextView mTemperatureNightTextView;
 
         public ViewHolder(View v) {
             super(v);
@@ -44,13 +45,14 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             mDateTextView = (TextView) v.findViewById(R.id.main_list_item_date);
             mTemperatureTextView = (TextView) v.findViewById(R.id.main_list_item_temperature);
             mImageView = (ImageView) v.findViewById(R.id.main_list_item_image);
+            mTemperatureNightTextView = (TextView) v.findViewById(R.id.main_list_item_temperature_night);
         }
     }
 
-    public MainRecyclerViewAdapter(Context context, ArrayList<WeatherListModel> list, RecyclerView recyclerView) {
+    public MainRecyclerViewAdapter(Context context, ArrayList<WeatherListModel> list, int pageNumber) {
         mList = list;
-        mRecyclerView = recyclerView;
         mContext = context;
+        mPageNumber = pageNumber;
     }
 
     @Override
@@ -68,8 +70,13 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
         final WeatherListModel model = mList.get(position);
 
-        holder.mDateTextView.setText(mDateFormat.format(new Date(model.getDate() * 1000L)));
-        holder.mTemperatureTextView.setText(Integer.toString((int) model.getTemperature() - 273));
+        String date = mDateFormat.format(new Date(model.getDate() * 1000L));
+        String temp = Integer.toString((int) model.getTemperature() - 273);
+        String tempNight = Integer.toString((int) model.getTemperatureNight() - 273);
+
+        holder.mDateTextView.setText(date);
+        holder.mTemperatureTextView.setText(temp);
+        holder.mTemperatureNightTextView.setText(tempNight);
         String description = model.getDescription();
 
         switch (description) {
@@ -87,7 +94,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WeatherDescriptionActivity.start(mContext, position);
+                WeatherDescriptionActivity.start(mContext, position, mPageNumber);
             }
         });
     }

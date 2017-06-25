@@ -4,53 +4,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="5dp"
+    app:cardElevation="@dimen/elevation"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="5dp">
+
     <RelativeLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <ImageView
             android:id="@+id/main_list_item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="weather"
-            android:src="@drawable/sun"
-            android:layout_marginTop="12dp"
-            android:layout_below="@+id/main_list_item_date"
             android:layout_alignStart="@+id/main_list_item_date"
-            android:layout_marginStart="18dp" />
+            android:layout_below="@+id/main_list_item_date"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="13dp"
+            android:contentDescription="@string/weather_image"
+            android:src="@drawable/sun" />
+
         <TextView
             android:id="@+id/main_list_item_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="50dp"
-            android:text="25"
             android:layout_alignBottom="@+id/main_list_item_image"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:text="@string/temperature_sample"
+            android:textSize="@dimen/temperature_size" />
+
+        <TextView
+            android:id="@+id/main_list_item_temperature_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/main_list_item_temperature"
+            android:layout_alignBottom="@+id/main_list_item_temperature"
+            android:layout_toEndOf="@+id/imageView5"
+            android:text="@string/temperature_sample"
+            android:textSize="@dimen/temperature_size" />
+
         <TextView
             android:id="@+id/main_list_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21.09.1009"
-            android:textSize="25dp"
+            android:text="11.11.1111"
+            android:textSize="@dimen/date_size"
+            android:layout_marginStart="12dp"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/main_list_item_temperature" />
+            android:layout_alignParentStart="true" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/celsius"
+            android:layout_alignTop="@+id/imageView5"
+            android:layout_toEndOf="@+id/main_list_item_temperature_night"
+            android:contentDescription="@string/measure"
+            app:srcCompat="@drawable/celsius" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/main_list_item_temperature"
+            android:layout_marginBottom="12dp"
             android:layout_toEndOf="@+id/main_list_item_temperature"
-            android:layout_marginBottom="12dp" />
+            android:contentDescription="@string/measure"
+            app:srcCompat="@drawable/celsius" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

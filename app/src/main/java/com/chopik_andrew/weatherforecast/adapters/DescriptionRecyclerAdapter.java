@@ -57,8 +57,11 @@ public class DescriptionRecyclerAdapter extends RecyclerView.Adapter<Description
 
         final WeatherListModel model = mList.get(position);
 
-        holder.time.setText(mDateFormat.format(new Date(model.getDate() * 1000L)));
-        holder.temp.setText(Integer.toString((int)model.getTemperature() - 273));
+        String date = mDateFormat.format(new Date(model.getDate() * 1000L));
+        String temp = Integer.toString((int)model.getTemperature() - 273);
+
+        holder.time.setText(date);
+        holder.temp.setText(temp);
         String desc = model.getDescription();
 
         switch (desc){

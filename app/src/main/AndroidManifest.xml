@@ -13,14 +13,16 @@
         android:roundIcon="@drawable/weather"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.WeatherDescriptionActivity">
+        <activity android:name=".activity.WeatherDescriptionActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

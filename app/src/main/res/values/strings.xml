@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_sample">Суббота</string>
+    <string name="temperature_sample">77</string>
+    <string name="text_sample">Sample</string>
+    <string name="time_sample">77:77</string>
+    <string name="day">Днем</string>
+    <string name="night">Ночью</string>
+    <string name="measure">Measure</string>
+    <string name="weather_image">Weather condition</string>
 </resources>
