@@ -52,13 +52,13 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case NOW_POSITION:
-                return "Today";
+                return "Сегодня";
 
             case YESTERDAY_POSITION:
-                return "5 Days";
+                return "5 дней";
 
             case OTHER_POSITION:
-                return "16 Days";
+                return "16 дней";
 
             default:
                 return super.getPageTitle(position);

@@ -90,7 +90,6 @@ public class WeatherApiManager {
                             mTemperature.add(response.body().getList().get(i).getTemp().getDay());
                             mDescription.add(response.body().getList().get(i).getWeather().get(0).getMain());
                             mClouds.add(response.body().getList().get(i).getClouds());
-
                         }
                         if (listener != null)
                             listener.success();
