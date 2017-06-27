@@ -9,4 +9,20 @@
     <string name="night">Ночью</string>
     <string name="measure">Measure</string>
     <string name="weather_image">Weather condition</string>
+    
+    <string name="mon">Понедельник</string>
+    <string name="tue">Вторник</string>
+    <string name="wed">Среда</string>
+    <string name="thu">Четверг</string>
+    <string name="fri">Пятница</string>
+    <string name="sat">Суббота</string>
+    <string name="sun">Воскресенье</string>
+
+    <string name="rain">Дождь</string>
+    <string name="clouds">Облачно</string>
+    <string name="sunny">Ясно</string>
+    <string name="wind_speed">Скорость ветра:  </string>
+    <string name="pressure">Давление:  </string>
+    <string name="cloudiness">Облачность:  </string>
+    <string name="humidity">Влажность:  </string>
 </resources>

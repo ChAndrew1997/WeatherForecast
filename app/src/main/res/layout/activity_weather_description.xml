@@ -9,8 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="@dimen/elevation"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:titleTextColor="@color/icons"
+        android:elevation="5dp"
+        app:subtitleTextColor="@color/icons"
+        app:theme="@style/MyCustomTheme"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     </android.support.v7.widget.Toolbar>
     <android.support.v4.view.ViewPager

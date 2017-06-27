@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/find_location"
-        android:title="find location"
+        android:id="@+id/share"
+        android:title="share"
         app:showAsAction="ifRoom"
-        android:onClick="onFindLocationClick"
-        android:icon="@drawable/ic_my_location"/>
+        android:onClick="onShareClick"
+        android:icon="@drawable/ic_share" />
 </menu>

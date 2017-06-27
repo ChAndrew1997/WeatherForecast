@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WeatherApiManager {
 
-    private static final String BASE_URL = "http://api.openweathermap.org/";
+    public static final String BASE_URL = "http://api.openweathermap.org/";
     private static final String API_KEY = "a84d20ba16e63145fec0b712d6547707";
     public static final String WEATHER_TYPE_RAIN = "Rain";
     public static final String WEATHER_TYPE_CLEAR = "Clear";

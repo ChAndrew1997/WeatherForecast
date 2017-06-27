@@ -4,12 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="@dimen/elevation"
+    app:cardElevation="3dp"
     android:layout_marginLeft="7dp"
     android:layout_marginRight="7dp"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:text="@string/temperature_sample"
             android:textSize="@dimen/temperature_size"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/primary_text"/>
 
         <TextView
             android:id="@+id/main_list_item_temperature_night"
@@ -47,7 +48,7 @@
             android:layout_toEndOf="@+id/imageView5"
             android:text="@string/temperature_sample"
             android:textSize="@dimen/temperature_size"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/primary_text"/>
 
         <TextView
             android:id="@+id/main_list_item_date"
@@ -58,7 +59,7 @@
             android:layout_marginStart="12dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/primary_text"/>
 
         <ImageView
             android:id="@+id/imageView2"

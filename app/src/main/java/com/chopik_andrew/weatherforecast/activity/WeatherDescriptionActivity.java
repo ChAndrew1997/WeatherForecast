@@ -7,8 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.chopik_andrew.weatherforecast.R;
+import com.chopik_andrew.weatherforecast.WeatherListModel;
 import com.chopik_andrew.weatherforecast.adapters.DescriptionPagerAdapter;
 import com.chopik_andrew.weatherforecast.managers.WeatherApiManager;
 
@@ -80,7 +83,29 @@ public class WeatherDescriptionActivity extends AppCompatActivity {
         return true;
     }
 
-    public int getMainPageNumber() {
-        return mMainPageNumber;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_share, menu);
+        return true;
+    }
+
+    public void onShareClick(MenuItem item){
+        int pagerPage = mPager.getCurrentItem();
+        WeatherListModel pageModel = WeatherListModel.getWeatherList(WeatherListModel.SIXTEEN_DAYS_WEATHER_MODEL).get(pagerPage);
+
+        String date = mDateFormat.format(new Date(pageModel.getDate() * 1000L));
+        String city = pageModel.getCity();
+        String url = WeatherApiManager.BASE_URL;
+        String temp = Integer.toString((int) pageModel.getTemperature() - 273);
+        String tempNight = Integer.toString((int) pageModel.getTemperatureNight() - 273);
+        String desc = pageModel.getDescription();
+        String message = new StringBuilder().append("Погода ").append(date).append(" ").append(city).append("\n").append("Днем: ")
+                .append(temp).append(" ночью: ").append(tempNight).append("\n").append(desc).append("\n").append(url).toString();
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        String chosenTitle = "Send...";
+        Intent chosenIntent = Intent.createChooser(intent, chosenTitle);
+        startActivity(chosenIntent);
     }
 }

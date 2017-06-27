@@ -12,7 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.ViewSwitcher;
 
 import com.chopik_andrew.weatherforecast.R;
+import com.chopik_andrew.weatherforecast.WeatherListModel;
 import com.chopik_andrew.weatherforecast.adapters.MainPagerAdapter;
+import com.chopik_andrew.weatherforecast.fragments.DescriptionFragment;
 import com.chopik_andrew.weatherforecast.managers.CurrentLocationManager;
 import com.chopik_andrew.weatherforecast.managers.WeatherApiManager;
 
@@ -38,8 +40,6 @@ public class MainActivity extends AppCompatActivity{
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(mToolBar);
-
-        mPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
 
         mViewPager.setOffscreenPageLimit(3);
 
@@ -72,10 +72,13 @@ public class MainActivity extends AppCompatActivity{
 
         @Override
         public void success() {
-            mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+            mPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
             mViewPager.setAdapter(mPagerAdapter);
             mTabLayout.setupWithViewPager(mViewPager);
             mToolBar.setTitle(WeatherApiManager.getInstance().getCity());
+
+            mPagerAdapter.notifyDataSetChanged();
+
             stopProgress();
         }
 
